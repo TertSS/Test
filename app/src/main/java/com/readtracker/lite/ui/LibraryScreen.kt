@@ -4,9 +4,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.items as gridItems
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -18,6 +20,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.readtracker.lite.LibraryTabs
 import com.readtracker.lite.data.Calc
 import com.readtracker.lite.data.Format
 import com.readtracker.lite.data.Settings
@@ -132,7 +135,7 @@ fun LibraryScreen(
                     modifier = Modifier.weight(1f).fillMaxWidth(),
                     contentPadding = PaddingValues(bottom = 100.dp),
                 ) {
-                    items(visible, key = { it.id }) { t ->
+                    gridItems(visible, key = { it.id }) { t ->
                         TitleCard(
                             title = t,
                             settings = settings,
@@ -206,12 +209,12 @@ private fun LazyRowChips(
     settings: Settings,
     onSelect: (String) -> Unit,
 ) {
-    androidx.compose.foundation.lazy.LazyRow(
+    LazyRow(
         contentPadding = PaddingValues(horizontal = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(0.dp),
     ) {
-        items(tabs.size) { i ->
-            val (key, label) = tabs[i]
+        items(tabs) { tab ->
+            val (key, label) = tab
             val statusColor = runCatching { Status.valueOf(key) }.getOrNull()
                 ?.let { settings.palette.statusColor(it).toColor() }
             FilterChipLite(
@@ -235,7 +238,7 @@ private fun FilterFormatsButton(active: Boolean, settings: Settings, onClick: ()
                 if (active) accent.copy(alpha = 0.14f) else ThemeColors.card(settings.theme),
                 androidx.compose.foundation.shape.RoundedCornerShape(10.dp),
             )
-            .clickableLite(onClick),
+            .clickable(onClick = onClick),
         contentAlignment = Alignment.Center,
     ) {
         Icon(AppIcons.Search, contentDescription = "Фильтр по формату", tint = if (active) accent else ThemeColors.grey)
@@ -279,6 +282,3 @@ private fun FormatFilterSheet(
         },
     )
 }
-
-private fun Modifier.clickableLite(onClick: () -> Unit): Modifier =
-    this.then(androidx.compose.foundation.clickable(onClick = onClick).let { Modifier.then(it) })

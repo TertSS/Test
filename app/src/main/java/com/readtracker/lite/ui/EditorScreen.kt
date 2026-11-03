@@ -13,6 +13,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
@@ -525,6 +526,7 @@ private fun CoverField(
 }
 
 /** Редактор жанров (II-10): выбранные чипы с ×, поле + кнопка «+», подсказки из известных. */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GenreEditor(
     selected: List<String>,
@@ -601,6 +603,7 @@ fun GenreEditor(
 }
 
 /** Полоса чипов-мультивыбора (статусы/форматы). */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FlowChips(
     options: List<Pair<String, String>>,

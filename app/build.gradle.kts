@@ -32,7 +32,8 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
-            isOptimizationEnabled = true // removeUnusedCode + removeResourceFromResourceTable
+            // Оптимизация неиспользуемого кода включается через R8 (isMinifyEnabled) и
+            // shrinkResources; отдельного свойства isOptimizationEnabled в AGP нет.
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             signingConfig = signingConfigs.getByName("release")
         }

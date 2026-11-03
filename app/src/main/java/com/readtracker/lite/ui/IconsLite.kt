@@ -3,6 +3,7 @@ package com.readtracker.lite.ui
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.addPathNodes
 import androidx.compose.ui.unit.dp
 
 /**
@@ -18,7 +19,7 @@ object AppIcons {
             defaultHeight = 24.dp,
             viewportWidth = viewport,
             viewportHeight = viewport,
-        ).addPath(pathData = d, fill = if (filled) SolidColor(Color.Black) else null).build()
+        ).addPath(pathData = addPathNodes(d), fill = if (filled) SolidColor(Color.Black) else null).build()
 
     val Add: ImageVector by lazy {
         icon(
