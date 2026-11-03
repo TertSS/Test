@@ -32,6 +32,7 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            isOptimizationEnabled = true // removeUnusedCode + removeResourceFromResourceTable
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             signingConfig = signingConfigs.getByName("release")
         }
@@ -67,7 +68,8 @@ dependencies {
     implementation(libs.compose.ui.graphics)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
-    implementation(libs.compose.material.icons)
+    // material-icons-extended (~1.5 МБ dex) вырезан: в коде используются только 7 иконок,
+    // они объявлены локально в ui/IconsLite.kt — в APK не грузится ничего неиспользуемого.
     implementation(libs.coil.compose)
     debugImplementation(libs.compose.ui.tooling)
 }

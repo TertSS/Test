@@ -2,14 +2,10 @@ package com.readtracker.lite.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
-import androidx.compose.material.icons.outlined.Book
-import androidx.compose.material.icons.outlined.BrokenImage
-import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -57,7 +53,7 @@ fun TitleCard(
             .clip(shape)
             .background(cardBg)
             .border(width = 1.dp, color = statusColor.copy(alpha = 0.18f), shape = shape)
-            .combinedClickableCompat(onClick = onClick, onLongClick = onLongClick)
+            .let { m -> if (onLongClick == null) m.clickable(onClick = onClick) else m.combinedClickableCompat(onClick = onClick, onLongClick = onLongClick) }
     ) {
         // Цветная вертикальная кромка статуса 3 dp
         Box(
@@ -137,7 +133,7 @@ fun TitleCard(
 
         if (settings.cardChevron) {
             Icon(
-                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                imageVector = AppIcons.KeyboardArrowRight,
                 contentDescription = null,
                 tint = ThemeColors.grey,
                 modifier = Modifier
@@ -237,7 +233,7 @@ private fun NumbersBlock(title: Title, settings: Settings, modifier: Modifier = 
         if (ratingText.isNotEmpty()) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
-                    Icons.Outlined.Star,
+                    AppIcons.Star,
                     contentDescription = null,
                     tint = accent,
                     modifier = Modifier.size(10.dp),
@@ -253,7 +249,7 @@ private fun NumbersBlock(title: Title, settings: Settings, modifier: Modifier = 
 private fun BookmarkLine(text: String, accent: Color, small: Boolean = false) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Icon(
-            Icons.Outlined.Book,
+            AppIcons.Book,
             contentDescription = null,
             tint = accent,
             modifier = Modifier.size(if (small) 10.dp else 12.dp),
@@ -307,7 +303,7 @@ fun CoverBox(title: Title, modifier: Modifier = Modifier, w: Int = 52, h: Int = 
                 loading = {},
                 error = {
                     Icon(
-                        Icons.Outlined.BrokenImage,
+                        AppIcons.BrokenImage,
                         contentDescription = null,
                         tint = Color.White.copy(alpha = 0.7f),
                         modifier = Modifier.size(18.dp),

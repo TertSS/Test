@@ -8,9 +8,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -153,7 +150,7 @@ fun RowsTableScreen(
                             rows.removeAt(i)
                             if (sortOnSave) rows.sortBy { it.num }
                         }, settings) {
-                            Icon(Icons.Filled.Remove, contentDescription = "Удалить", tint = settings.palette.dropped.toColor())
+                            Icon(AppIcons.Remove, contentDescription = "Удалить", tint = settings.palette.dropped.toColor())
                         }
                     }
                 }

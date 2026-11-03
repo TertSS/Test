@@ -7,9 +7,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.TextSelectionColors
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -228,7 +225,7 @@ fun AccentPlusButton(onClick: () -> Unit, settings: Settings, size: Int = 40) {
             .clickable(onClick = onClick),
         contentAlignment = Alignment.Center,
     ) {
-        Icon(Icons.Filled.Add, contentDescription = "Добавить", tint = Color.Black)
+        Icon(AppIcons.Add, contentDescription = "Добавить", tint = Color.Black)
     }
 }
 
@@ -319,7 +316,7 @@ fun CardBlock(
 @Composable
 fun ClearIcon(onClick: () -> Unit, settings: Settings) {
     Icon(
-        Icons.Filled.Close,
+        AppIcons.Close,
         contentDescription = "Очистить",
         tint = ThemeColors.grey,
         modifier = Modifier.size(18.dp).clickable(onClick = onClick),

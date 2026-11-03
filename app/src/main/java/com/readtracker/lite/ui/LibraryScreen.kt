@@ -7,8 +7,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -240,7 +238,7 @@ private fun FilterFormatsButton(active: Boolean, settings: Settings, onClick: ()
             .clickableLite(onClick),
         contentAlignment = Alignment.Center,
     ) {
-        Icon(Icons.Filled.Search, contentDescription = "Фильтр по формату", tint = if (active) accent else ThemeColors.grey)
+        Icon(AppIcons.Search, contentDescription = "Фильтр по формату", tint = if (active) accent else ThemeColors.grey)
     }
 }
 

@@ -50,3 +50,10 @@ object ThemeColors {
 
     val grey = Color(0xFF9E9E9E)
 }
+
+/** Корневая тема: фон + статус-бар в зависимости от режима (часть I). */
+@androidx.compose.runtime.Composable
+fun AppTheme(mode: com.readtracker.lite.data.AppThemeMode, content: @androidx.compose.runtime.Composable () -> Unit) {
+    val bg = ThemeColors.background(mode)
+    androidx.compose.material3.Surface(color = bg, content = content)
+}
